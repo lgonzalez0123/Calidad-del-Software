@@ -1,0 +1,42 @@
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.edge.options import Options as EdgeOptions
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+options = EdgeOptions()
+options.add_experimental_option('excludeSwitches', ['enable-logging'])
+driver = webdriver.Edge(options=options)
+
+# Navegar a la página principal
+driver.get("https://www.linkedin.com/")
+time.sleep(2)
+
+
+assert "LinkedIn: Log In or Sign Up" in driver.title
+
+
+about_us_link = driver.find_element(By.LINK_TEXT, "About")
+about_us_link.click()
+time.sleep(2)
+assert "About LinkedIn" in driver.title
+
+# Navegar a otra página (por ejemplo, la página de "Cookie Policy")
+contact_link = driver.find_element(By.LINK_TEXT, "Cookie Policy")
+contact_link.click()
+time.sleep(2)
+
+# Verificar el título de la página de "Cookie Policy"
+assert "Cookie Policy | LinkedIn" in driver.title
+
+
+# Navegar a otra página (por ejemplo, la página de "Cookie Policy")
+contact_link = driver.find_element(By.LINK_TEXT, "Privacy Policy")
+contact_link.click()
+time.sleep(2)
+
+# Verificar el título de la página de "Cookie Policy"
+assert "LinkedIn Privacy Policy" in driver.title
+# Cerrar el navegador al finalizar la prueba
+driver.quit()
