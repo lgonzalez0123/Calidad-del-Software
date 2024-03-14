@@ -1,0 +1,48 @@
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.edge.options import Options as EdgeOptions
+
+options = EdgeOptions()
+options.add_experimental_option('excludeSwitches', ['enable-logging'])
+driver = webdriver.Edge(options=options)
+
+driver.get("https://www.linkedin.com/")
+time.sleep(2) 
+
+join_button = driver.find_element(By.LINK_TEXT, "Join now")
+join_button.click()
+time.sleep(2)  
+
+email_field = driver.find_element(By.NAME, "email-address")
+email_field.send_keys("lgonzalez@iqteksolutions.com")
+time.sleep(1) 
+
+password_field = driver.find_element(By.NAME, "password")
+password_field.send_keys("Masiel2019ea1.123456")
+time.sleep(1)  
+
+
+join_button = driver.find_element(By.ID,"join-form-submit")
+join_button.click()
+time.sleep(3)  
+
+
+email_field = driver.find_element(By.ID, "first-name").send_keys ("Prueba")
+time.sleep(1)
+
+
+email_field = driver.find_element(By.ID, "last-name").send_keys ("Gonzalez")
+time.sleep(1)  
+
+join_button2 = driver.find_element(By.ID,"join-form-submit")
+join_button2.click()
+time.sleep(3) 
+
+driver.find_element(By.NAME,"phoneNumber").send_keys ("8098998452")
+time.sleep(3)
+
+join_button2 = driver.find_element(By.ID,"register-phone-submit-button")
+join_button2.click()
+time.sleep(5) 
+
